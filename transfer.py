@@ -66,9 +66,12 @@ def reset():
         sys.exit(0)
 
 
-# performs device discovery, always returns paired devices
+# performs device discovery
 def search():
-    devices = bluetooth.discover_devices(duration=1)
+    try:
+        devices = bluetooth.discover_devices()
+    except IOError:
+        devices = None
     return devices
 
 
