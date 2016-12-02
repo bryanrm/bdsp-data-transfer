@@ -81,7 +81,7 @@ def main(argv):
     else:
         try:
             config = open(config_file)
-            bt_address = config.readline()
+            bt_address = config.read(17)  # read first 17 bytes of file
             config.close()
             if bt_address == '':
                 results = search()
