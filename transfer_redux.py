@@ -10,15 +10,15 @@ addresses_file = "addresses.txt"  # name of Bluetooth addresses file
 data_file = "data.txt"  # edit this to change file data being sent
 
 
-# ...
+# parses addresses and returns list
 def parse_file():
     devices = []
     with open(addresses_file, 'r') as f:
-        contents = f.read()
+        contents = f.readlines()
         for line in contents:
             segment = line.split('(')
             if len(segment) > 1:
-                address = segment[1][:-1]
+                address = segment[1][:-2]
                 devices.append(address)
     return devices
 
@@ -82,7 +82,7 @@ def reset():
         sys.exit(0)
 
 
-# performs device discovery
+# uses bluez to obtain paired devices, saves to file
 def search():
     os.system('bt-device -l > addresses.txt')
     return parse_file()
