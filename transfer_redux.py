@@ -1,5 +1,9 @@
 # Created by Fall 2016 Projects Team
 # Bryan Martinez, Stephen Ayre, Jonathan Greenberg
+# Makes use of PyBluez and bluez-tools
+# https://github.com/karulis/pybluez
+# https://github.com/khvzak/bluez-tools
+
 import bluetooth
 import sys
 import os
@@ -82,7 +86,7 @@ def reset():
         sys.exit(0)
 
 
-# uses bluez to obtain paired devices, saves to file
+# uses bluez-tools to obtain paired devices, saves to file
 def search():
     os.system('bt-device -l > addresses.txt')
     return parse_file()
